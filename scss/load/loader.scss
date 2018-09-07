@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+p{
+font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3{
+	font-family: 'Montserrat', sans-serif;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+#loader {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	position:fixed;
+	background: white;
+	z-index: 105;
+	&.loaded{
+		opacity: 0	;
+		transition: 0.3s linear;
+		overflow: hidden;
+	}
+	#loader-img {
+		background-image: url('../img/load.png');
+		background-position: left 100%;
+    background-size: 100vw 100vh;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+		position: fixed;
+		z-index: 101;
+	}
+	#cover-loader{
+		right: 0;
+		background: white;
+		width: 100vw;
+		height: 100vh;
+		animation: line 3.5s 1 linear;
+		position: fixed;
+		z-index: 102;
+	}
+}

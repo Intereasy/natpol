@@ -1,0 +1,22 @@
+/* CSS Document */
+p {
+  font-family: 'Open Sans', sans-serif; }
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif; }
+
+body {
+  padding: 0;
+  margin: 0; }
+
+#loader {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%; }
+  #loader img {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; }
+  #loader p {
+    font-size: 12px; }
