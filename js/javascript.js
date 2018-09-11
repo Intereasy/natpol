@@ -1,15 +1,14 @@
-let flagLayoutWhite = false;
+
+window.onload=function(){
+  
+
 //loader
-$(function(){
-    $(document).ready(function() {
-     loader();
-      hover();
-      slider();
-    })
+$(function () {
+  $(document).ready(function () {
+    slider();
+  })
 });
-document.addEventListener('scroll', function (event) {
-      floatMenu(flagLayoutWhite);
-});
+/*
 document.getElementById('hamburger').addEventListener('click', function(){
 var flagMenu = document.getElementById('hamburger').className.includes('active');
 if (flagMenu==false){
@@ -23,86 +22,55 @@ if (flagMenu==false){
 }
 
 });
-document.querySelector('.layout-white').addEventListener('click', function(){
-      flagLayoutWhite = true ;
-      $('body').slideUp();
-      changeLayout();
-      $('body').slideDown(600);
 
-});
-//loader
-function loader(){
-  setTimeout(function(){
-    $('#loader').addClass('loaded');
-  }, 2500);
-  setTimeout(function(){
-    $('#loader').css('display','none')
-  }, 3000);
-}
-//hover menu
-function hover(){
-  $("nav ul li").hover(
-    function() {
-      $( this ).addClass("hover");
-      $("nav ul").find(".active").addClass("unactive").removeClass("active");
-    }, function() {
-      $( this ).removeClass("hover");
-      $("nav ul").find(".unactive").addClass("active").removeClass("unactive");
-    }
-  );
-}
 
-//floating menu
-function floatMenu(){
-  var navPosition = $("nav").position();
-  var scrollPosition = $(window).scrollTop();
-  if (scrollPosition>navPosition.top){
-    $(".top-bar").addClass("float-menu");
-    if (window.innerWidth>=992){
-    $("#logo a img:nth-child(1)").css("display","none");
-    $(".top-bar").css("background","white");
-    $(".slider").addClass("sliderDown");
-    if (flagLayoutWhite==true){
-      $("#logo a img:nth-child(2)").attr("src","img/top/white-logo-2-small.png");
-    }else {
-    $("#logo a img:nth-child(2)").attr("src","img/top/logo-2-small.png");
-    console.log(scrollPosition);
-  }
-  }
-  } else {
-    $(".top-bar").removeClass("float-menu");
-    if (window.innerWidth>=992){
-      $("#logo a img:nth-child(1)").css("display","inline");
-        $(".top-bar").css("background","transparent");
-        $(".slider").removeClass("sliderDown");
-      if (flagLayoutWhite==true){//if layout white
-        $("#logo a img:nth-child(2)").attr("src","img/top/white-logo-2.png");
-      } else {
-        $("#logo a img:nth-child(2)").attr("src","img/top/logo-2.png");
-        console.log(scrollPosition);
-      }
-    }
-  }
-}
-//function layout White
-function changeLayout(){
-  setTimeout(function(){
-  $("#logo a img:nth-child(1)").attr("src","img/top/white-logo-1.png");
-  $("#logo a img:nth-child(2)").attr("src","img/top/white-logo-2.png");
-  $('.top-bar').css('background','white');
-  $('nav ul').css('background','white');
-  $('li a.active').css('border-bottom','3px solid white');
-  $('li a.unactive').css('border-bottom','3px solid #dd7b89');
-  $('li a.hover').css('border-bottom','3px solid white');
-},499);
-}
 
-function slider(){
+
+*/
+function slider() {
   $(".owl-carousel").owlCarousel({
-		sliderSpeed:300,
-		paginationSpeed:400,
-		items: 1,
-		autoplay: false,
-		loop: true
-	});
+    sliderSpeed: 300,
+    paginationSpeed: 400,
+    items: 1,
+    autoplay: true,
+    loop: true
+  });
 }
+
+AOS.init();
+initMap();
+}
+
+function initMap() {
+  let position ={lat:50.3231869,lng:18.79367179999997};
+  
+  let options = {
+    zoom: 13,
+    center: position,
+    styles: [
+      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+      {
+        featureType: 'road',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#da2128'}]
+      }, {
+        featureType: 'water',
+        elementType: 'geometry',
+        stylers: [{color: '#3d597f'}]
+      }]
+  }
+  let pinColor = "da2128";
+  let pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+  new google.maps.Size(40, 50),
+  new google.maps.Point(0,0),
+  new google.maps.Point(10, 34));
+  let map = new google.maps.Map(document.getElementById('map'),options);
+  var marker = new google.maps.Marker({
+    position: position, 
+    map: map,
+    icon: pinImage
+  });
+}
+
